@@ -1,0 +1,257 @@
+﻿Build1=Default,b4a.esalbaapp
+File1=back button.png
+File10=noperson.jpg
+File11=off button.png
+File12=person.jpg
+File13=realtime def.png
+File14=realtime sel.png
+File15=refresh button.png
+File16=reset button.png
+File17=settings bg.png
+File18=settings def.png
+File19=settings sel.png
+File2=cat.png
+File20=SourceSansPro-Regular.ttf
+File21=update button.png
+File22=voice button.png
+File3=driver module.png
+File4=history bg.png
+File5=history box.png
+File6=history def.png
+File7=history sel.png
+File8=Layout1.bal
+File9=main button.png
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
+FileGroup16=Default Group
+FileGroup17=Default Group
+FileGroup18=Default Group
+FileGroup19=Default Group
+FileGroup2=Default Group
+FileGroup20=Default Group
+FileGroup21=Default Group
+FileGroup22=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=b4xcollections
+Library10=network
+Library11=phone
+Library12=randomaccessfile
+Library13=reflection
+Library14=runtimepermissions
+Library15=serial
+Library16=sql
+Library17=stringutils
+Library18=xui
+Library2=b4xpreferencesdialog
+Library3=byteconverter
+Library4=contentresolver
+Library5=core
+Library6=gps
+Library7=javaobject
+Library8=json
+Library9=mpchartlib
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~SetApplicationAttribute(android:theme, "@style/LightTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#ff039be5</color>~\n~	<color name="statusbar">#ff006db3</color>~\n~	<color name="textColorPrimary">#ffffffff</color>~\n~	<color name="navigationBar">#ff006db3</color>~\n~</resources>~\n~)~\n~CreateResource(values-v20, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Material.Light">~\n~		 <item name="android:colorPrimary">@color/actionbar</item>~\n~		 <item name="android:colorPrimaryDark">@color/statusbar</item>~\n~		 <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~		 <item name="android:navigationBarColor">@color/navigationBar</item>~\n~    </style>~\n~</resources>~\n~)~\n~CreateResource(values-v14, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Holo.Light">~\n~		<item name="android:actionBarStyle">@style/CustomActionBarStyle</item>~\n~    </style>~\n~	<style name="CustomActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">~\n~	    <item name="android:background">@color/actionbar</item>~\n~	</style>~\n~</resources>~\n~)~\n~~\n~
+Module1=clsParser
+Module10=vb6
+Module11=WTAServer
+Module2=clswidget
+Module3=frmcontrol
+Module4=frmhist
+Module5=frmlogin
+Module6=frmmain
+Module7=frmsettings
+Module8=Starter
+Module9=Table
+NumberOfFiles=22
+NumberOfLibraries=18
+NumberOfModules=11
+Version=12.5
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: E-Salba
+	#VersionCode: 1
+	#VersionName: 
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: False
+	
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+	Dim VR As VoiceRecognition
+End Sub
+Sub Globals
+	Private frmmain1 As frmmain
+	Private frmcontrol1 As frmcontrol
+	Private frmhist1 As frmhist
+	Private frmsettings1 As frmsettings
+	Private frmlogin1 As frmlogin
+End Sub
+Sub Speak
+	VR.Listen
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	If FirstTime=True Then
+		Activity.LoadLayout("Layout1")
+		Activity.Title="MyTitle"
+		frmlogin1.SetLayout(0,0,100%x,100%y)
+		frmlogin1.Visible=True
+		frmmain1.SetLayout(0,0,100%x,100%y)
+		frmmain1.Visible=False
+		VR.Initialize("VR")
+	End If
+	If VR.IsSupported Then
+		ToastMessageShow("Voice recognition is supported.", False)
+	Else
+		ToastMessageShow("Voice recognition is not supported.", True)
+	End If
+	VR.Prompt = "Say your message"
+		frmcontrol1.SetLayout(0,0,100%x,100%y)
+		frmcontrol1.Visible=False
+		frmhist1.SetLayout(0,0,100%x,100%y)
+		frmhist1.Visible=False
+		frmsettings1.SetLayout(0,0,100%x,100%y)
+		frmsettings1.Visible=False
+End Sub
+Sub refresh_click()
+End Sub
+Sub saveline(line As String,state As String,kw As String)
+	Dim cc As clswidget
+	cc.Initialize(Me)
+	Dim sql As String=$"insert into history(Line,State,KW,Date) values ('${line}','${state}','${kw}','${Starter.wsh.DateTimeSQL}')"$
+	Dim rs As ResumableSub = cc.Querry(sql,"QUERRY")
+	Wait For(rs) Complete (l As List)
+End Sub
+Sub VR_Result (Success As Boolean, Texts As List)
+	If Success = True Then
+		ToastMessageShow(Texts.Get(0), True)
+		If Texts.Get(0)="line 1 on" Or Texts.Get(0)="line one on" Or Texts.Get(0)="line wan on" Then
+			Dim f As frmcontrol=frmcontrol1
+			f.on1_click
+			saveline(1,"ON",Starter.enKW1)
+		End If
+		If Texts.Get(0)="line to on" Or Texts.Get(0)="line 2 on" Or Texts.Get(0)="line two on" Or Texts.Get(0)="line too on" Then
+			Dim f As frmcontrol=frmcontrol1
+			f.on2_click
+			saveline(2,"ON",Starter.enKW1)
+		End If
+		If Texts.Get(0)="line 3 on" Or Texts.Get(0)="line three on" Or Texts.Get(0)="line tree on" Then
+			Dim f As frmcontrol=frmcontrol1
+			f.on3_click
+			saveline(3,"ON",Starter.enKW1)
+		End If
+		If Texts.Get(0)="line 1 off" Or Texts.Get(0)="line one off" Or Texts.Get(0)="line wan off" Then
+			Dim f As frmcontrol=frmcontrol1
+			f.off1_click
+			saveline(1,"OFF",Starter.enKW1)
+		End If
+		If Texts.Get(0)="line 2 off" Or Texts.Get(0)="line to off" Or Texts.Get(0)="line two off" Then
+			Dim f As frmcontrol=frmcontrol1
+			f.off2_click
+			saveline(2,"OFF",Starter.enKW1)
+		End If
+		If Texts.Get(0)="line 3 off" Or Texts.Get(0)="line three off" Or Texts.Get(0)="line tree off" Then
+			Dim f As frmcontrol=frmcontrol1
+			f.off3_click
+			saveline(3,"OFF",Starter.enKW1)
+		End If
+	End If
+End Sub
+Sub done_click()
+End Sub
+
+Sub Activity_Resume
+	Starter.frmmain1=frmmain1
+	Starter.frmcontrol1=frmcontrol1
+	Starter.frmhist1=frmhist1
+	Starter.frmsettings1=frmsettings1
+	Starter.frmlogin1=frmlogin1
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	If UserClosed=True Then
+		ExitApplication
+	End If
+End Sub
+
+
+Sub sr_Results(Texts As List)
+	Dim Text As String = ""
+	For Each t As String In Texts
+		Text = Text & t
+		Exit
+	Next
+	Activity.Title=Text
+'	EditText1.Text = Text
+'	Button3_Click
+End Sub
+
+Sub sr_PartialResults(Texts As List)
+	If Texts.Size > 0 Then
+'		EditText1.Text = Texts.get(0)
+	Else
+'		EditText1.Text = ""
+	End If
+
+End Sub
+
+Sub sr_BeginningOfSpeech
+End Sub
+
+Sub sr_EndOfSpeech
+	Activity.Title = "Recognition Ended"
+End Sub
+
+Sub sr_ReadyForSpeech
+	Activity.Title = "Speak Now"
+End Sub
+
+Sub sr_Error(Msg As String)
+	'Msgbox(Msg,"")
+	ToastMessageShow(Msg,False)
+End Sub
+
+Sub sr_RmsChanged(RmsValue As Float)
+	
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+trigger1
+	Time
+		varchar(255)
+	KW
+		varchar(255)
+trigger2
+	Time
+		varchar(255)
+	KW
+		varchar(255)
+trigger3
+	Time
+		varchar(255)
+	KW
+		varchar(255)
+history
+	Line
+		varchar(255)
+	State
+		varchar(255)
+	KW
+		varchar(255)
+	Date
+		varchar(255)
+price
+	KWH
+		varchar(255)

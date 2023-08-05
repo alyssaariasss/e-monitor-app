@@ -1,0 +1,119 @@
+﻿Build1=Default,b4a.esalbamcu
+File1=cat.png
+File2=driver module.png
+File3=home bg.png
+File4=Layout1.bal
+File5=noperson.jpg
+File6=person.jpg
+File7=sourcesanspro-regular.ttf
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+Group=Default Group
+Library1=b4xcollections
+Library10=randomaccessfile
+Library11=reflection
+Library12=runtimepermissions
+Library13=serial
+Library14=sql
+Library15=stringutils
+Library16=xui
+Library17=contentresolver
+Library2=b4xpreferencesdialog
+Library3=byteconverter
+Library4=core
+Library5=gps
+Library6=json
+Library7=mpchartlib
+Library8=network
+Library9=phone
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~SetApplicationAttribute(android:theme, "@style/LightTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#ff039be5</color>~\n~	<color name="statusbar">#ff006db3</color>~\n~	<color name="textColorPrimary">#ffffffff</color>~\n~	<color name="navigationBar">#ff006db3</color>~\n~</resources>~\n~)~\n~CreateResource(values-v20, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Material.Light">~\n~		 <item name="android:colorPrimary">@color/actionbar</item>~\n~		 <item name="android:colorPrimaryDark">@color/statusbar</item>~\n~		 <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~		 <item name="android:navigationBarColor">@color/navigationBar</item>~\n~    </style>~\n~</resources>~\n~)~\n~CreateResource(values-v14, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Holo.Light">~\n~		<item name="android:actionBarStyle">@style/CustomActionBarStyle</item>~\n~    </style>~\n~	<style name="CustomActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">~\n~	    <item name="android:background">@color/actionbar</item>~\n~	</style>~\n~</resources>~\n~)~\n~~\n~
+Module1=clschange
+Module10=WTAServer
+Module2=clsParser
+Module3=clswidget
+Module4=frmcontrol
+Module5=frmmain
+Module6=frmmap
+Module7=Starter
+Module8=Table
+Module9=vb6
+NumberOfFiles=7
+NumberOfLibraries=17
+NumberOfModules=10
+Version=12.5
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: esalbamcu
+	#VersionCode: 1
+	#VersionName: 
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: False
+	#BridgeLogger:True
+	
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+Sub Globals
+	Private frmmain1 As frmmain
+	Private frmcontrol1 As frmcontrol
+	Private frmmap1 As frmmap
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	If FirstTime=True Then
+		Activity.LoadLayout("Layout1")
+		'Activity.AddMenuItem3("", "refresh", xui.LoadBitmapResize(File.DirAssets, "ic_cached_white_24dp.png", 32dip, 32dip, True), True)
+		'Activity.AddMenuItem3("", "done", xui.LoadBitmapResize(File.DirAssets, "ic_done_white_24dp.png", 32dip, 32dip, True), True)
+		'Activity.AddMenuItem3("", "blue", xui.LoadBitmapResize(File.DirAssets, "bt.png", 32dip, 32dip, True), True)
+		Activity.Title="MyTitle"
+		frmmain1.SetLayout(0,0,100%x,100%y)
+		frmmain1.Visible=True
+	End If
+		frmcontrol1.SetLayout(0,0,100%x,100%y)
+		frmcontrol1.Visible=False
+		frmmap1.SetLayout(0,0,100%x,100%y)
+		frmmap1.Visible=False
+End Sub
+Sub refresh_click()
+End Sub
+
+Sub done_click()
+End Sub
+
+Sub Activity_Resume
+	Starter.frmmain1=frmmain1
+	Starter.frmcontrol1=frmcontrol1
+	Starter.frmmap1=frmmap1
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	'ToastMessageShow("pause : " & UserClosed,False)
+	If UserClosed=True Then
+		ExitApplication
+	End If
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
