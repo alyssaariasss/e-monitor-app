@@ -1,7 +1,5 @@
 # e-monitor-app
-E-Monitor - An Android app designed to seamlessly interact with the hardware "E-Monitor", empowering users to take control of their household's energy consumption, remotely manage appliances, and access energy history.
 
-Introduction
 Welcome to the E-Monitor project! This electricity monitoring system with limiting and voice automation is developed as a part of our undergraduate thesis project. Our team, consisting of four members, aimed to create a solution that allows users to monitor and control their household's energy consumption efficiently.
 
 Features
